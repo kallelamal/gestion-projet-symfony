@@ -1,0 +1,4 @@
+users : 
+  type: rest
+  resource:     "AppBundle:Utilisateur"
+  name_prefix:  api_

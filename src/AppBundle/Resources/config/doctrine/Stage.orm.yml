@@ -1,0 +1,35 @@
+AppBundle\Entity\Stage:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\StageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sujetStage:
+            type: string
+            length: '255'
+            column: sujet_stage
+        descStage:
+            type: string
+            length: 255
+            column: desc_stage
+        dateDeb:
+            type: date
+            column: date_deb
+        dateFin:
+            type: date
+            column: date_fin
+        etatProposition:
+            type: boolean
+            column: etat_proposition
+        etatDemande:
+            type: boolean
+            column: etat_demande
+        idProp:
+            type: integer
+            column: id_prop
+    lifecycleCallbacks: {  }

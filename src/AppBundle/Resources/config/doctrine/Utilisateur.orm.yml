@@ -1,0 +1,65 @@
+AppBundle\Entity\Utilisateur:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UtilisateurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: 255
+        password:
+            type: string
+            length: 255
+        cin:
+            type: string
+            length: '8'
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        tel:
+            type: string
+            length: 255
+        dateNaiss:
+            type: date
+            column: date_naiss
+        cycleEtude:
+            type: string
+            length: 255
+            column: cycle_etude
+        niveauEtude:
+            type: string
+            length: 255
+            column: niveau_etude
+        specialite:
+            type: string
+            length: 255
+        grade:
+            type: string
+            length: 255
+        nomEnt:
+            type: string
+            length: 255
+            column: nom_ent
+        telEnt:
+            type: string
+            length: 255
+            column: tel_ent
+        faxEnt:
+            type: string
+            length: 255
+            column: fax_ent
+        adresseEnt:
+            type: string
+            length: 255
+            column: adresse_ent
+        type:
+            type: integer
+    lifecycleCallbacks: {  }
