@@ -1,4 +1,13 @@
-users : 
+etudiants : 
   type: rest
-  resource:     "AppBundle:Utilisateur"
+  resource:     "AppBundle:Etudiant"
+  name_prefix:  api_
+
+enseignants : 
+  type: rest
+  resource:     "AppBundle:Enseignant"
+  name_prefix:  api_
+entreprises : 
+  type: rest
+  resource:     "AppBundle:Entreprise"
   name_prefix:  api_
