@@ -16,7 +16,7 @@ class EtudiantController extends FOSRestController
     /**
      * @Rest\Get("/etudiant/{id}")
      */
-    public function getUserAction($id) {
+    public function getEtudiantAction($id) {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -30,7 +30,7 @@ class EtudiantController extends FOSRestController
     /**
      * @Rest\Get("/etudiant")
      */
-    public function getEtudiantsAction() {
+    public function getAllEtudiantAction() {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -45,7 +45,7 @@ class EtudiantController extends FOSRestController
     /**
      * @Rest\Post("/etudiant")
      */
-    public function addEtudiantAction(Request $request) {
+    public function postEtudiantAction(Request $request) {
         $result=  Null;
             try 
             {
@@ -81,7 +81,7 @@ class EtudiantController extends FOSRestController
     /**
      * @Rest\Put("/etudiant/{id}")
      */
-    public function editEtudiantAction(Request $request, $id) {
+    public function putEtudiantAction(Request $request, $id) {
         $result=  Null;
             try {
                 $nom = $request->request->get("nom");  

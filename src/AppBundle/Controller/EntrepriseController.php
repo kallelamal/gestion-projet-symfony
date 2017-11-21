@@ -16,7 +16,7 @@ class EntrepriseController extends FOSRestController
     /**
      * @Rest\Get("/entreprise/{id}")
      */
-    public function getUserAction($id) {
+    public function getEntrepriseAction($id) {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -30,7 +30,7 @@ class EntrepriseController extends FOSRestController
     /**
      * @Rest\Get("/entreprise")
      */
-    public function getEntreprisesAction() {
+    public function getAllEntrepriseAction() {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -44,7 +44,7 @@ class EntrepriseController extends FOSRestController
     /**
      * @Rest\Post("/entreprise")
      */
-    public function addEntrepriseAction(Request $request) {
+    public function postEntrepriseAction(Request $request) {
         $result=  Null;
             try 
             {
@@ -81,7 +81,7 @@ class EntrepriseController extends FOSRestController
     /**
      * @Rest\Put("/entreprise/{id}")
      */
-    public function editEntrepriseAction(Request $request, $id) {
+    public function putEntrepriseAction(Request $request, $id) {
         $result=  Null;
             try {
                 $nom = $request->request->get("nom");  

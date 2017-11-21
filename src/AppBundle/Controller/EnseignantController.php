@@ -16,7 +16,7 @@ class EnseignantController extends FOSRestController
     /**
      * @Rest\Get("/enseignant/{id}")
      */
-    public function getUserAction($id) {
+    public function getEnseignantAction($id) {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -30,7 +30,7 @@ class EnseignantController extends FOSRestController
     /**
      * @Rest\Get("/enseignant")
      */
-    public function getEtudiantsAction() {
+    public function getAllEnseignantAction() {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
@@ -42,9 +42,9 @@ class EnseignantController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("add/enseignant")
+     * @Rest\Post("/enseignant")
      */
-    public function addEnseignantAction(Request $request) {
+    public function postEnseignantAction(Request $request) {
         $result=  Null;
             try 
             {
@@ -77,7 +77,7 @@ class EnseignantController extends FOSRestController
     /**
      * @Rest\Put("/enseignant/{id}")
      */
-    public function editEnseignantAction(Request $request, $id) {
+    public function putEnseignantAction(Request $request, $id) {
         $result=  Null;
             try {
                 $nom = $request->request->get("nom");  
