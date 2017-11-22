@@ -73,7 +73,7 @@ class EtudiantController extends FOSRestController
             }
             catch (\Exception $exception) 
             {
-              //  $this->throwFosrestSupportedException($exception);
+              // $this->throwFosrestSupportedException($exception);
                 return new Response("",400);
             }
 

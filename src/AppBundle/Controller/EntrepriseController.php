@@ -22,7 +22,7 @@ class EntrepriseController extends FOSRestController
             $conn = $this->get('database_connection');
             $result = $conn->fetchAssoc('SELECT id,cin  FROM utilisateur where  id = ? ',array($id));
         } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
+            $result= new Response("No results found",404);              
         }
         return  $result;
     }
@@ -36,7 +36,7 @@ class EntrepriseController extends FOSRestController
             $conn = $this->get('database_connection');
             $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=3');
         } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
+            $result= new Response("No results found",404);         
         }
         return  $result;
     }
@@ -99,10 +99,10 @@ class EntrepriseController extends FOSRestController
                 $conn = $this->get('database_connection');
                 $conn->update('utilisateur', array('type' => 3 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
                 'nom_ent' => $nomEntreprise,'tel_ent' => $telEntreprise,'adresse_ent' => $adresseEntreprise ,'fax_ent' => $faxEntreprise ),array('id' => $id));
-                $result=Response::HTTP_OK;
+                $result= new Response("",200);  
             } catch (\Exception $exception) {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+                $result= new Response("",400);  
             }
-        return$result;
+        return $result;
     }
 }

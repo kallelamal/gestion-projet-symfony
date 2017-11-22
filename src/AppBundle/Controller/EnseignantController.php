@@ -22,7 +22,7 @@ class EnseignantController extends FOSRestController
             $conn = $this->get('database_connection');
             $result = $conn->fetchAssoc('SELECT *  FROM utilisateur where  id = ? ',array($id));
         } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
+            $result= new Response("No results found",404);            
         }
         return  $result;
     }
@@ -36,7 +36,7 @@ class EnseignantController extends FOSRestController
             $conn = $this->get('database_connection');
             $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=2');
         } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
+            $result= new Response("No results found",404);           
         }
         return  $result;
     }
@@ -93,8 +93,8 @@ class EnseignantController extends FOSRestController
                 'grade' => $grade),array('id' => $id));
                 $result=Response::HTTP_OK;
             } catch (\Exception $exception) {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+                $result= new Response("",400);  
             }
-        return$result;
+        return $result;
     }
 }
