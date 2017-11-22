@@ -45,47 +45,47 @@ class Utilisateur
     /**
      * @var \DateTime
      */
-    private $dateNaiss;
+    private $dateNaiss = null;
 
     /**
      * @var string
      */
-    private $cycleEtude;
+    private $cycleEtude = null;
 
     /**
      * @var string
      */
-    private $niveauEtude;
+    private $niveauEtude= null;
 
     /**
      * @var string
      */
-    private $specialite;
+    private $specialite= null;
 
     /**
      * @var string
      */
-    private $grade;
+    private $grade= null;
 
     /**
      * @var string
      */
-    private $nomEnt;
+    private $nomEnt= null;
 
     /**
      * @var string
      */
-    private $telEnt;
+    private $telEnt= null;
 
     /**
      * @var string
      */
-    private $faxEnt;
+    private $faxEnt= null;
 
     /**
      * @var string
      */
-    private $adresseEnt;
+    private $adresseEnt= null;
 
     /**
      * @var int

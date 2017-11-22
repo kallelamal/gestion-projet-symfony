@@ -30,36 +30,45 @@ AppBundle\Entity\Utilisateur:
         dateNaiss:
             type: date
             column: date_naiss
+            nullable: TRUE
         cycleEtude:
             type: string
             length: 255
             column: cycle_etude
+            nullable: TRUE
         niveauEtude:
             type: string
             length: 255
             column: niveau_etude
+            nullable: TRUE
         specialite:
             type: string
             length: 255
+            nullable: TRUE
         grade:
             type: string
             length: 255
+            nullable: TRUE
         nomEnt:
             type: string
             length: 255
             column: nom_ent
+            nullable: TRUE
         telEnt:
             type: string
             length: 255
             column: tel_ent
+            nullable: TRUE
         faxEnt:
             type: string
             length: 255
             column: fax_ent
+            nullable: TRUE
         adresseEnt:
             type: string
             length: 255
             column: adresse_ent
+            nullable: TRUE
         type:
             type: integer
     lifecycleCallbacks: {  }

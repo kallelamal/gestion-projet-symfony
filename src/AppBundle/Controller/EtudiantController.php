@@ -47,36 +47,47 @@ class EtudiantController extends FOSRestController
      */
     public function postEtudiantAction(Request $request) {
         $result=  Null;
+        $isims=  Null;
+        $existe=  Null;
             try 
             {
                 $nom = $request->request->get("nom");  
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
+                $pass = $request->request->get("password");   
                 $tel = $request->request->get("tel");                                
-                $dateNess = $request->request->get("dateNess");                
-                $cy_etud = $request->request->get("cy_etud");                
-                $niv_etud = $request->request->get("niv_etud");  
-                $specialite = $request->request->get("spec");  
-                if (empty($cin)) 
+                $dateNess = $request->request->get("date_naiss");                
+                $cy_etud = $request->request->get("cycle_etude");                
+                $niv_etud = $request->request->get("niveau_etude");  
+                $specialite = $request->request->get("specialite");  
+                $conn = $this->get('database_connection');
+                $isims = $conn->fetchAssoc('SELECT * FROM isims where Ncin=? ',array($cin));
+              
+                if (!($isims)) 
                 {
-                    $result= Response::HTTP_NOT_FOUND;
+                    return new Response("non isims",400);
                 }
                 else
                 {
-                $conn = $this->get('database_connection');
+                $existe = $conn->fetchAssoc('SELECT * FROM utilisateur where cin =?',array($cin));
+                if ($existe) 
+                {
+                    return new Response("user existe",400);
+                    
+                }
+                else{
                 $conn->insert('utilisateur', array('type' => 1 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
                 'date_naiss' => $dateNess,'cycle_etude' => $cy_etud,'niveau_etude' => $niv_etud ,'specialite' => $specialite ));
-
+               
+                }
                 }
             }
             catch (\Exception $exception) 
             {
-              // $this->throwFosrestSupportedException($exception);
-                return new Response("",400);
+              $this->throwFosrestSupportedException($exception);
+              //return new Response("",400);
             }
-
         return new Response("", 201);
     }
 
