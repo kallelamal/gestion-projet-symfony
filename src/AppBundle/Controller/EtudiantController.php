@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use AppBundle\Entity\Utiisateur;
-
+use AppBundle\Exception\BadRequestDataException;
 
 class EtudiantController extends FOSRestController
 {
@@ -34,7 +34,7 @@ class EtudiantController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAssoc('SELECT * FROM utilisateur where type=1');
+            $result = $conn->fetchAll('SELECT * FROM utilisateur where type=1');
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
@@ -68,14 +68,16 @@ class EtudiantController extends FOSRestController
                 $conn = $this->get('database_connection');
                 $conn->insert('utilisateur', array('type' => 1 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
                 'date_naiss' => $dateNess,'cycle_etude' => $cy_etud,'niveau_etude' => $niv_etud ,'specialite' => $specialite ));
-                $result=Response::HTTP_OK;
+
                 }
-            } 
+            }
             catch (\Exception $exception) 
             {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+              //  $this->throwFosrestSupportedException($exception);
+                return new Response("",400);
             }
-         return $result;
+
+        return new Response("", 201);
     }
 
     /**
@@ -100,8 +102,17 @@ class EtudiantController extends FOSRestController
                 'date_naiss' => $dateNess,'cycle_etude' => $cy_etud,'niveau_etude' => $niv_etud ,'specialite' => $specialite ),array('id' => $id));
                 $result=Response::HTTP_OK;
             } catch (\Exception $exception) {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+                return new Response("",400);
             }
-        return$result;
+            return new Response("",200);
+    }
+     /**
+     * Makes response from given exception.
+     *
+     * @param \Exception $exception
+     * @throws BadRequestDataException
+     */
+    protected function throwFosrestSupportedException(\Exception $exception) {
+        throw new BadRequestDataException($exception->getMessage());
     }
 }

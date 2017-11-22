@@ -34,7 +34,7 @@ class EntrepriseController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAssoc('SELECT *  FROM utilisateur where type=3');
+            $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=3');
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
@@ -61,21 +61,22 @@ class EntrepriseController extends FOSRestController
 
                 if (empty($cin)) 
                 {
-                    $result= Response::HTTP_NOT_FOUND;
+                    return new Response("",404);
                 }
                 else
                 {
                 $conn = $this->get('database_connection');
                 $conn->insert('utilisateur', array('type' => 3 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
                 'nom_ent' => $nomEntreprise,'tel_ent' => $telEntreprise,'adresse_ent' => $adresseEntreprise ,'fax_ent' => $faxEntreprise ));
-                $result=Response::HTTP_OK;
+               
                 }
             } 
             catch (\Exception $exception) 
             {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+                return new Response("",400);
             }
-         return $result;
+
+        return new Response("", 201);
     }
 
     /**

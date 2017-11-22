@@ -34,7 +34,7 @@ class EnseignantController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAssoc('SELECT *  FROM utilisateur where type=2');
+            $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=2');
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
@@ -57,21 +57,22 @@ class EnseignantController extends FOSRestController
                 $grade = $request->request->get("grade");                
                 if (empty($cin)) 
                 {
-                    $result= Response::HTTP_NOT_FOUND;
+                    return new Response("",404);
                 }
                 else
                 {
                 $conn = $this->get('database_connection');
                 $conn->insert('utilisateur', array('type' => 2 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
                 'grade' => $grade));
-                $result=Response::HTTP_OK;
+              
                 }
             } 
             catch (\Exception $exception) 
             {
-                $result=Response::HTTP_NOT_ACCEPTABLE;
+                return new Response("",400);
             }
-         return $result;
+
+        return new Response("", 201);
     }
 
     /**
