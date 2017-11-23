@@ -101,12 +101,12 @@ class EtudiantController extends FOSRestController
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
+                $pass = $request->request->get("password");   
                 $tel = $request->request->get("tel");                                
-                $dateNess = $request->request->get("dateNess");                
-                $cy_etud = $request->request->get("cy_etud");                
-                $niv_etud = $request->request->get("niv_etud");  
-                $specialite = $request->request->get("spec");  
+                $dateNess = $request->request->get("date_naiss");                
+                $cy_etud = $request->request->get("cycle_etude");                
+                $niv_etud = $request->request->get("niveau_etude");  
+                $specialite = $request->request->get("specialite"); 
 
                 $conn = $this->get('database_connection');
                 $conn->update('utilisateur', array('type' => 1 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,

@@ -26,7 +26,6 @@ class EntrepriseController extends FOSRestController
         }
         return  $result;
     }
-
     /**
      * @Rest\Get("/entreprise")
      */
@@ -40,7 +39,6 @@ class EntrepriseController extends FOSRestController
         }
         return  $result;
     }
-
     /**
      * @Rest\Post("/entreprise")
      */
@@ -52,12 +50,11 @@ class EntrepriseController extends FOSRestController
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
-                $tel = $request->request->get("tel");                                
-                $nomEntreprise = $request->request->get("nomEntreprise");                
-                $telEntreprise = $request->request->get("telEntreprise");                
-                $adresseEntreprise = $request->request->get("adresseEntreprise");  
-                $faxEntreprise = $request->request->get("faxEntreprise");  
+                $pass = $request->request->get("password");    
+                $nomEntreprise = $request->request->get("nom_ent");                
+                $telEntreprise = $request->request->get("tel_ent");                
+                $adresseEntreprise = $request->request->get("adresse_ent");  
+                $faxEntreprise = $request->request->get("fax_ent");    
 
                 if (empty($cin)) 
                 {
@@ -66,9 +63,8 @@ class EntrepriseController extends FOSRestController
                 else
                 {
                 $conn = $this->get('database_connection');
-                $conn->insert('utilisateur', array('type' => 3 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
+                $conn->insert('utilisateur', array('type' => 4 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass,
                 'nom_ent' => $nomEntreprise,'tel_ent' => $telEntreprise,'adresse_ent' => $adresseEntreprise ,'fax_ent' => $faxEntreprise ));
-               
                 }
             } 
             catch (\Exception $exception) 
@@ -78,31 +74,65 @@ class EntrepriseController extends FOSRestController
 
         return new Response("", 201);
     }
-
     /**
      * @Rest\Put("/entreprise/{id}")
      */
     public function putEntrepriseAction(Request $request, $id) {
         $result=  Null;
             try {
+                $type = $request->request->get("type");
+                $conn = $this->get('database_connection');
+                if ($type == 3)
+                {
+                    $conn->update('utilisateur', array('type' => $type ),array('id' => $id));
+                   
+                }
+                else
+                {
                 $nom = $request->request->get("nom");  
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
+                $pass = $request->request->get("password");    
                 $tel = $request->request->get("tel");                                
-                $nomEntreprise = $request->request->get("nomEntreprise");                
-                $telEntreprise = $request->request->get("telEntreprise");                
-                $adresseEntreprise = $request->request->get("adresseEntreprise");  
-                $faxEntreprise = $request->request->get("faxEntreprise");  
-
-                $conn = $this->get('database_connection');
-                $conn->update('utilisateur', array('type' => 3 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
+                $nomEntreprise = $request->request->get("nom_ent");                
+                $telEntreprise = $request->request->get("tel_ent");                
+                $adresseEntreprise = $request->request->get("adresse_ent");  
+                $faxEntreprise = $request->request->get("fax_ent");    
+                $conn->update('utilisateur', array('nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass,
                 'nom_ent' => $nomEntreprise,'tel_ent' => $telEntreprise,'adresse_ent' => $adresseEntreprise ,'fax_ent' => $faxEntreprise ),array('id' => $id));
-                $result= new Response("",200);  
+                  
+                }
+                $result= new Response("",200);
             } catch (\Exception $exception) {
                 $result= new Response("",400);  
             }
         return $result;
+    }
+     /**
+     * @Rest\Delete("/entreprise/{id}")
+     */
+    public function deleteEntrepriseAction($id) {
+        $result=  Null;
+            try {
+               
+                $conn = $this->get('database_connection');
+              
+                    $conn->delete('utilisateur',array('id' => $id));
+                
+                $result= new Response("",200);
+            } catch (\Exception $exception) {
+                $result= new Response("",400);  
+            }
+        return $result;
+    }
+     /**
+     * Makes response from given exception.
+     *
+     * @param \Exception $exception
+     * @throws BadRequestDataException
+     */
+    protected function throwFosrestSupportedException(\Exception $exception) {
+        throw new BadRequestDataException($exception->getMessage());
     }
 }

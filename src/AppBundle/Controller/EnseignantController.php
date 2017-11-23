@@ -55,7 +55,7 @@ class EnseignantController extends FOSRestController
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
+                $pass = $request->request->get("password"); 
                 $tel = $request->request->get("tel");                                
                 $grade = $request->request->get("grade");
                 $conn = $this->get('database_connection');                
@@ -99,7 +99,7 @@ class EnseignantController extends FOSRestController
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
                 $email = $request->request->get("email");                
-                $pass = $request->request->get("pass");   
+                $pass = $request->request->get("password");   
                 $tel = $request->request->get("tel");                                
                 $grade = $request->request->get("grade");    
                 $conn = $this->get('database_connection');
