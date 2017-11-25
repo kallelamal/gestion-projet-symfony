@@ -39,19 +39,7 @@ class EntrepriseController extends FOSRestController
         }
         return  $result;
     }
-    /**
-     * @Rest\Get("/entrepriseCompte")
-     */
-    public function getEntrepriseCompteAction() {
-        $result=  Null;
-        try {
-            $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT email,password FROM utilisateur where type=3');
-        } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
-        }
-        return  $result;
-    }
+    
     /**
      * @Rest\Post("/entreprise")
      */

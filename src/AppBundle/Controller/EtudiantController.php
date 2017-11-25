@@ -42,13 +42,13 @@ class EtudiantController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/etudiantCompte")
+     * @Rest\Get("/comptes")
      */
-    public function getEtudiantCompteAction() {
+    public function getComptesAction() {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT email,password FROM utilisateur where type=1');
+            $result = $conn->fetchAll('SELECT email,password FROM utilisateur');
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
