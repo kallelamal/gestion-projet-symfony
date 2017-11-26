@@ -27,13 +27,13 @@ class EntrepriseController extends FOSRestController
         return  $result;
     }
     /**
-     * @Rest\Get("/entreprise")
+     * @Rest\Get("/entreprise/all/{id}")
      */
-    public function getAllEntrepriseAction() {
+    public function getAllEntrepriseAction($id) {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=3');
+            $result = $conn->fetchAll('SELECT *  FROM utilisateur where type=?',array($id));
         } catch (\Exception $exception) {
             $result= new Response("No results found",404);         
         }
