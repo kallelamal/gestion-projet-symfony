@@ -20,7 +20,7 @@ class EtudiantController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAssoc('SELECT id,cin  FROM utilisateur where  id = ? ',array($id));
+            $result = $conn->fetchAssoc('SELECT *  FROM utilisateur where  id = ? ',array($id));
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
@@ -41,19 +41,7 @@ class EtudiantController extends FOSRestController
         return  $result;
     }
 
-    /**
-     * @Rest\Get("/comptes")
-     */
-    public function getComptesAction() {
-        $result=  Null;
-        try {
-            $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT email,password FROM utilisateur');
-        } catch (\Exception $exception) {
-            $result=Response::HTTP_NOT_ACCEPTABLE;            
-        }
-        return  $result;
-    }
+  
 
 
     /**

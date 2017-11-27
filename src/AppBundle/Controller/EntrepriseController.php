@@ -20,7 +20,7 @@ class EntrepriseController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAssoc('SELECT id,cin  FROM utilisateur where  id = ? ',array($id));
+            $result = $conn->fetchAssoc('SELECT *  FROM utilisateur where  id = ? ',array($id));
         } catch (\Exception $exception) {
             $result= new Response("No results found",404);              
         }
