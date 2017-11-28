@@ -1,0 +1,35 @@
+AppBundle\Entity\Pfe:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PfeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sujetPfe:
+            type: string
+            length: 255
+            column: sujet_pfe
+        descPfe:
+            type: string
+            length: 255
+            column: desc_pfe
+        dateDeb:
+            type: date
+            column: date_deb
+        dateFin:
+            type: date
+            column: date_fin
+        etatProposition:
+            type: boolean
+            column: etat_proposition
+        etatDemande:
+            type: boolean
+            column: etat_demande
+        idProp:
+            type: integer
+            column: id_prop
+    lifecycleCallbacks: {  }

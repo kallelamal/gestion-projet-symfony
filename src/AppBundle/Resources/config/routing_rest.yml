@@ -19,3 +19,7 @@ stages :
   type: rest
   resource:     "AppBundle:Stage"
   name_prefix:  api_
+pfes : 
+  type: rest
+  resource:     "AppBundle:Pfe"
+  name_prefix:  api_
