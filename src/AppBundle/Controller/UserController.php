@@ -34,6 +34,22 @@ class UserController extends FOSRestController
         }
         return  $result;
     }
+    /**
+     * @Rest\Put("/user/{id}")
+     */
+    public function putUserAction(Request $request, $id) {
+        $result=  Null;
+            try {
+                $password = $request->request->get("password");  
+            
+                $conn = $this->get('database_connection');
+                $conn->update('utilisateur', array('password' => $password ),array('id' => $id));
+                $result=Response::HTTP_OK;
+            } catch (\Exception $exception) {
+                return new Response("",400);
+            }
+            return new Response("",200);
+    }
      /**
      * Makes response from given exception.
      *
