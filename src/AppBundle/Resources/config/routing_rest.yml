@@ -15,3 +15,7 @@ users :
   type: rest
   resource:     "AppBundle:User"
   name_prefix:  api_
+stages : 
+  type: rest
+  resource:     "AppBundle:Stage"
+  name_prefix:  api_
