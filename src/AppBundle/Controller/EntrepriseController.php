@@ -93,14 +93,13 @@ class EntrepriseController extends FOSRestController
                 $nom = $request->request->get("nom");  
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
-                $email = $request->request->get("email");                
-                $pass = $request->request->get("password");    
+                $email = $request->request->get("email");                 
                 $tel = $request->request->get("tel");                                
                 $nomEntreprise = $request->request->get("nom_ent");                
                 $telEntreprise = $request->request->get("tel_ent");                
                 $adresseEntreprise = $request->request->get("adresse_ent");  
                 $faxEntreprise = $request->request->get("fax_ent");    
-                $conn->update('utilisateur', array('nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass,
+                $conn->update('utilisateur', array('nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email,
                 'nom_ent' => $nomEntreprise,'tel_ent' => $telEntreprise,'adresse_ent' => $adresseEntreprise ,'fax_ent' => $faxEntreprise ),array('id' => $id));
                   
                 }

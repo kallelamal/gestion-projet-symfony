@@ -98,16 +98,15 @@ class EnseignantController extends FOSRestController
                 $nom = $request->request->get("nom");  
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
-                $email = $request->request->get("email");                
-                $pass = $request->request->get("password");   
+                $email = $request->request->get("email");                   
                 $tel = $request->request->get("tel");                                
                 $grade = $request->request->get("grade");    
                 $conn = $this->get('database_connection');
-                $conn->update('utilisateur',  array('type' => 2 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
-                'grade' => $grade),array('id' => $id));
+                $conn->update('utilisateur',  array('type' => 2 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'tel' => $tel ,'grade' => $grade),array('id' => $id));
                 $result=Response::HTTP_OK;
             } catch (\Exception $exception) {
-                $result= new Response("",400);  
+                $this->throwFosrestSupportedException($exception);
+                //$result= new Response("",400);  
             }
         return $result;
     }

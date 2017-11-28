@@ -102,8 +102,7 @@ class EtudiantController extends FOSRestController
                 $nom = $request->request->get("nom");  
                 $prenom = $request->request->get("prenom");                
                 $cin = $request->request->get("cin");                
-                $email = $request->request->get("email");                
-                $pass = $request->request->get("password");   
+                $email = $request->request->get("email");               
                 $tel = $request->request->get("tel");                                
                 $dateNess = $request->request->get("date_naiss");                
                 $cy_etud = $request->request->get("cycle_etude");                
@@ -111,7 +110,7 @@ class EtudiantController extends FOSRestController
                 $specialite = $request->request->get("specialite"); 
 
                 $conn = $this->get('database_connection');
-                $conn->update('utilisateur', array('type' => 1 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email ,'password' => $pass ,'tel' => $tel ,
+                $conn->update('utilisateur', array('type' => 1 ,'nom' => $nom , 'prenom' => $prenom ,'cin' => $cin ,'email' => $email  ,'tel' => $tel ,
                 'date_naiss' => $dateNess,'cycle_etude' => $cy_etud,'niveau_etude' => $niv_etud ,'specialite' => $specialite ),array('id' => $id));
                 $result=Response::HTTP_OK;
             } catch (\Exception $exception) {
