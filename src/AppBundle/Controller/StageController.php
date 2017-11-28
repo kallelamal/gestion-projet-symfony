@@ -28,6 +28,20 @@ class StageController extends FOSRestController
         }
         return  $result;
     }
+     /**
+     * @Rest\Get("/stageByProp/{id}")
+     */
+    public function getStageByProp($id) {
+        $result=  Null;
+        try {
+            $conn = $this->get('database_connection');
+            $result = $conn->fetchAll('SELECT * FROM stage where id_prop =?',array($id));
+        } catch (\Exception $exception) {
+            $result=Response::HTTP_NOT_ACCEPTABLE;            
+        }
+        return  $result;
+    }
+    
     /**
      * @Rest\Post("/stageProp")
      */
