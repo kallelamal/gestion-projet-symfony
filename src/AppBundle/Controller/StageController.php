@@ -55,7 +55,7 @@ class StageController extends FOSRestController
                 $date_deb = $request->request->get("date_deb");                
                 $date_fin = $request->request->get("date_fin");                               
                 $id_prop = $request->request->get("id_prop");
-                
+
                 $conn = $this->get('database_connection');                
                 
                 $conn->insert('stage', array('sujet_stage' => $sujet_stage , 'desc_stage' => $desc_stage ,'date_deb' => $date_deb ,'date_fin' => $date_fin ,'etat_proposition' => 0 ,'etat_demande' => 1 ,
@@ -126,12 +126,11 @@ class StageController extends FOSRestController
     /**
      * @Rest\Put("/stageValid/{id}")
      */
-    public function putStageValidAction(Request $request, $id) {
+    public function putStageValidAction($id) {
         $result=  Null;
             try {
                 $conn = $this->get('database_connection');
-                $etat_proposition = $request->request->get("etat_proposition");  
-                $conn->update('stage', array('etat_proposition' => $etat_proposition),array('id' => $id));
+                $conn->update('stage', array('etat_proposition' => 1),array('id' => $id));
                   
                 $result= new Response("",200);
             } catch (\Exception $exception) {
