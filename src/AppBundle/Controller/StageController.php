@@ -22,7 +22,8 @@ class StageController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT * FROM stage s ,utilisateur u where etat_proposition =? and s.id_prop=u.id',array($etat));
+            $result = $conn->fetchAll('SELECT sujet_stage, desc_stage,nom_ent,date_deb,date_fin,s.id
+            FROM stage s , utilisateur u where etat_proposition =? and s.id_prop=u.id',array($etat));
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
