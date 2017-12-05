@@ -22,7 +22,7 @@ class UserController extends FOSRestController
             $conn = $this->get('database_connection');
             $email = $request->request->get("email");                
             $pass = $request->request->get("password");   
-            $result = $conn->fetchAssoc('SELECT id,type FROM utilisateur where email=? AND password=?', array($email,$pass));
+            $result = $conn->fetchAssoc('SELECT * FROM utilisateur where email=? AND password=?', array($email,$pass));
             
             if ($result==false) 
             {

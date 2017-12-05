@@ -32,7 +32,7 @@ class StageController extends FOSRestController
      /**
      * @Rest\Get("/stageByProp/{id}")
      */
-    public function getStageByProp($id) {
+    public function getStagebypropAction($id) {
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
