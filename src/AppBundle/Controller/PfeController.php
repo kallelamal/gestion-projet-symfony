@@ -116,8 +116,7 @@ class PfeController extends FOSRestController
         $result=  Null;
             try {
                 $conn = $this->get('database_connection');
-                $etat_proposition = $request->request->get("etat_proposition");  
-                $conn->update('pfe', array('etat_proposition' => $etat_proposition),array('id' => $id));
+                $conn->update('pfe', array('etat_proposition' => 1),array('id' => $id));
                   
                 $result= new Response("",200);
             } catch (\Exception $exception) {
