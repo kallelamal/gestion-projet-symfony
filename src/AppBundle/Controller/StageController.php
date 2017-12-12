@@ -36,7 +36,7 @@ class StageController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT * from stage where id =?',array($id));
+            $result = $conn->fetchAssoc('SELECT * from stage where id =?',array($id));
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
@@ -128,7 +128,7 @@ class StageController extends FOSRestController
                 $date_fin = $request->request->get("date_fin");                               
                 $id_prop = $request->request->get("id_prop");
 
-                $conn->update('stage', array('sujet_stage' => $sujet_stage , 'desc_stage' => $desc_stage ,'date_deb' => $date_deb ,'date_fin' => $date_fin  ),array('id' => $id));
+                $conn->update('stage', array('sujet_stage' => $sujet_stage , 'desc_stage' => $desc_stage ,'date_deb' => $date_deb ,'date_fin' => $date_fin,'etat_proposition' => 0 ),array('id' => $id));
                   
                 $result= new Response("",200);
             } catch (\Exception $exception) {
