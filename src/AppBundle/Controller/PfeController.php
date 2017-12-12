@@ -21,7 +21,8 @@ class PfeController extends FOSRestController
         $result=  Null;
         try {
             $conn = $this->get('database_connection');
-            $result = $conn->fetchAll('SELECT * FROM pfe where etat_proposition =?',array($etat));
+            $result = $conn->fetchAll('SELECT sujet_pfe, desc_pfe,nom_ent,tel_ent,adresse_ent,email,date_deb,date_fin,p.id
+            FROM pfe p , utilisateur u where etat_proposition =? and p.id_prop=u.id',array($etat));
         } catch (\Exception $exception) {
             $result=Response::HTTP_NOT_ACCEPTABLE;            
         }
