@@ -29,6 +29,33 @@ class PfeController extends FOSRestController
         return  $result;
     }
     /**
+     * @Rest\Get("/pfeId/{id}")
+     */
+    public function getPfeByIdAction($id) {
+        $result=  Null;
+        try {
+            $conn = $this->get('database_connection');
+            $result = $conn->fetchAssoc('SELECT * from pfe where id =?',array($id));
+        } catch (\Exception $exception) {
+            $result=Response::HTTP_NOT_ACCEPTABLE;            
+        }
+        return  $result;
+    }
+         /**
+     * @Rest\Get("/pfeByProp/{id}")
+     */
+    public function getPfebypropAction($id) {
+        $result=  Null;
+        try {
+            $conn = $this->get('database_connection');
+            $result = $conn->fetchAll('SELECT * FROM pfe where id_prop =?',array($id));
+        } catch (\Exception $exception) {
+            $result=Response::HTTP_NOT_ACCEPTABLE;            
+        }
+        return  $result;
+    }
+    
+    /**
      * @Rest\Post("/pfeProp")
      */
     public function postPfePropAction(Request $request) {
@@ -100,7 +127,7 @@ class PfeController extends FOSRestController
                 $date_fin = $request->request->get("date_fin");                               
                 $id_prop = $request->request->get("id_prop");
 
-                $conn->update('pfe', array('sujet_pfe' => $sujet_pfe , 'desc_pfe' => $desc_pfe ,'date_deb' => $date_deb ,'date_fin' => $date_fin  ),array('id' => $id));
+                $conn->update('pfe', array('sujet_pfe' => $sujet_pfe , 'desc_pfe' => $desc_pfe ,'date_deb' => $date_deb ,'date_fin' => $date_fin, 'etat_proposition' =>0 ),array('id' => $id));
                   
                 $result= new Response("",200);
             } catch (\Exception $exception) {
