@@ -1,0 +1,20 @@
+AppBundle\Entity\Etudiant_PFE:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\Etudiant_PFERepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idEtd:
+            type: integer
+            column: id_etd
+        idPfe:
+            type: integer
+            column: id_pfe
+        date:
+            type: date
+    lifecycleCallbacks: {  }
